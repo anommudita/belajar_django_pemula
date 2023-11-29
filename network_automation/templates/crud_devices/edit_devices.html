@@ -1,0 +1,58 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+    <div class="row">
+        <!-- Your Profile -->
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-body" style="padding-top: 5px; margin-top: 5px;">
+                    <div class="m-sm-3">
+                        <form action="" method="post">
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+                                <label class="form-label">Hostname</label>
+                                <input class="form-control form-control-lg" type="text" name="edit_hostname" id="edit_hostname" placeholder="Enter device hostname" value="{{ device.hostname }}"/>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">IP Addres</label>
+                                <input class="form-control form-control-lg" type="text" name="edit_ip_address" id="edit_ip_address" placeholder="Enter device ip address" value="{{ device.ip_address }}"/>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Username</label>
+                                <input class="form-control form-control-lg" type="text" name="edit_username" id="edit_username" placeholder="Enter device username" value="{{ device.username }}"/>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input class="form-control form-control-lg" type="password" name="edit_password_device" id="edit_password_device" placeholder="Enter device password" value="{{ device.password }}"/>
+                            </div>
+
+                            <label for="edit_vendor">Vendor : </label>
+                            <div class="input-group input-group-merge input-group-alternative">
+                                <select name="edit_vendor" class="form-control" id="edit_vendor">
+                                    <option value="">pilih</option>
+                                    <option value="mikrotik" {% if device.vendor == 'mikrotik' %} selected {% endif %}
+                                    
+                                    >Mikrotik</option>
+                                    <option value="cisco" {% if device.vendor == 'cisco' %} selected {% endif %}>Cisco</option>
+                                </select>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between pt-4">
+                                <a href="/" class="btn btn-lg btn-danger">Cancel</a>
+                                <button class="btn btn-lg btn-primary">Save Device</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+	
+{% endblock content %}

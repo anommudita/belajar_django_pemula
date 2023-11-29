@@ -1,0 +1,47 @@
+<!-- file dari config html -->
+{% extends 'main.html' %}
+
+<!-- wrapping content -->
+{% block content %}
+        <!-- flash message -->
+    {% for message in messages %}
+    <div class="container-fluid p-0">
+
+        <div class="alert {{ message.tags }} alert-dismissible fade show col-6" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    {% endfor %}
+    
+    <div class="row">
+
+        <form method="POST">
+            {% csrf_token %}
+        
+            <h4 class="mt-3">Chose Target:</h4>
+
+            <div class="card flex-fill">
+                <div class="card-header">
+                    {% for device in devices %}
+                        <div class="col-md-6">
+                            <input type="checkbox" name="device" value="{{ device.id }}">
+                            {{ device.ip_address }} - {{ device.vendor }}
+                        </div>
+                        <div class="pt-2"></div>
+                    {% endfor %}
+                </div>
+            </div>
+        
+            <h4 class="mt-3">Mikrotik Command</h4>
+            <textarea class="form-control" rows="5" name="mikrotik_command"></textarea>
+
+            <h4 class="mt-3">Cisco Command</h4>
+            <textarea class="form-control" rows="5" name="cisco_command"></textarea>
+
+            <button type="submit" class="mt-3 btn btn-primary">Setup!</button>
+
+        </form>
+    </div>
+
+{% endblock content %}

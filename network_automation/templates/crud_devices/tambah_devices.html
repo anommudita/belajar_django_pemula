@@ -1,0 +1,58 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+
+    <div class="row">
+        <!-- Your Profile -->
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-body" style="padding-top: 5px; margin-top: 5px;">
+                    <div class="m-sm-3">
+                        <form action="" method="post">
+
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+                                <label class="form-label">Hostname</label>
+                                <input class="form-control form-control-lg" type="text" name="hostname" id="hostname" placeholder="Enter device hostname"/>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">IP Addres</label>
+                                <input class="form-control form-control-lg" type="text" name="ip_address" id="ip_address" placeholder="Enter device ip address"/>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Username</label>
+                                <input class="form-control form-control-lg" type="text" name="username" id="username" placeholder="Enter device username" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input class="form-control form-control-lg" type="password" name="password_device" id="password_device" placeholder="Enter device password" />
+                            </div>
+
+                            <label for="vendor">Vendor : </label>
+                            <div class="input-group input-group-merge input-group-alternative">
+                                <select name="vendor" class="form-control" id="vendor">
+                                    <option value="" selected>pilih</option>
+                                    <option value="mikrotik">Mikrotik</option>
+                                    <option value="cisco">Cisco</option>
+                                </select>
+                            </div>
+
+                            <div class="d-flex justify-content-between pt-4">
+                                <a href="/" class="btn btn-lg btn-danger">Cancel</a>
+                                <button class="btn btn-lg btn-primary">Insert Device</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+	
+{% endblock content %}

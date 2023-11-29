@@ -1,0 +1,82 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="AdminKit">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" href="{% static 'images/logopti.png' %}" />
+
+	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
+
+    <!-- JS Bootstrap 5 -->
+    <script src="{% static 'bootstrap_5/js/bootstrap.bundle.min.js' %}"></script>
+
+	<title>Network Automation</title>
+
+	<link href="{% static 'css/app.css'%}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+</head>
+<body>
+
+    <div class="wrapper">
+
+        <!-- navbar -->
+        {% include 'navbar.html' %}
+
+        <div class="main">
+        <!-- topbar -->
+        {% include 'topbar.html' %}
+
+        <!-- loading -->
+
+        <!-- konten -->
+        <main class="content" >
+
+            <div class="container-fluid p-0">
+
+            <h1 class="h3 mb-3"><strong></strong>{{ title }}</h1>
+        <!-- membungkus konten -->
+                {% block content %}
+
+
+
+
+                {% endblock %}
+            </div>
+        </main>
+        <!-- end konten -->
+
+        <!-- footer -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row text-muted">
+                        <div class="col-6 text-start">
+                            <p class="mb-0">
+                                <a class="text-muted" href="#"><strong>Admin</strong></a> - <a class="text-muted" href="#" ><strong>Network Automation Proxmox</strong></a>&copy;
+                            </p>
+                        </div>
+                        <div class="col-6 text-end">
+                                <p class="mb-0">
+                                <strong>Network Automation</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- end footer -->
+        </div>
+    </div>
+
+    <!-- footer -->
+    <script src="{% static 'js/app.js'%}"></script>
+</body>
+</html>
