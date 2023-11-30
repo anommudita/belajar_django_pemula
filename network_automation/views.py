@@ -55,7 +55,7 @@ def tambah_device(request):
         vendor = request.POST.get('vendor')
 
 
-        if hostname == "" or ip_address == "" or username == "" or password == "" or vendor == "":
+        if hostname == "" or ip_address == "" or username == "" or vendor == "":
             messages.error(request, "All fields must be filled")
             return redirect('devices')
 
@@ -63,6 +63,8 @@ def tambah_device(request):
         add_device = Device(hostname=hostname, ip_address=ip_address, username=username, password=password, vendor=vendor)
         add_device.save()
 
+        # success message
+        messages.success(request, "Successfully added device")
         return redirect('devices')
     else:
         messages.error(request, "Failed to add device")
@@ -94,9 +96,12 @@ def edit_device(request, id_device):
         device.vendor = vendor
         device.save()
 
+        # success message
+        messages.success(request, "Successfully edited device")
+
         return redirect('devices')
     else:
-        pass
+        messages.error(request, "Failed to edit device")
         
     context = {
         'title' : "Edit Devices",
@@ -113,6 +118,10 @@ def delete_device(request, id_device):
 
     # delete data in the database
     device.delete()
+
+
+    # success message
+    messages.success(request, "Successfully deleted device")
     return redirect('devices')
 
 
@@ -126,7 +135,7 @@ def configure(request):
         cisco_command = request.POST['cisco_command'].splitlines()
 
         for x in selected_devices_id:
-
+            
             # # log
             try:
                 dev = get_object_or_404(Device, pk=x)
@@ -141,9 +150,13 @@ def configure(request):
                     for cmd in cisco_command:
                         conn.send(cmd + '\n')
                         time.sleep(1)
+                        # success message
+                    messages.success(request, "Successfully config device cisco")
                 else:
                     for cmd in mikrotik_command:
                         ssh_clinet.exec_command(cmd)
+                        
+                    messages.success(request, "Successfully config device mikrotik")
 
                 # success configure
                 return redirect('devices')
@@ -152,7 +165,6 @@ def configure(request):
                 print(e)
                 # failed configure
                 return redirect('devices')
-
     else:
         devices = Device.objects.all()
 
